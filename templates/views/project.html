@@ -4,7 +4,7 @@
 	<div class="container">
 		<h1>{{ project.name }}</h1>
 
-    {% for role in roles %}
+    {% for role in project.roles %}
       <div style="background: {{role.color}};">
         <a href="/projects?role={{ role.slug }}">{{ role.name }}</a>
       </div>

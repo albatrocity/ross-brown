@@ -31,6 +31,7 @@ keystone.pre('render', middleware.flashMessages)
 const routes = {
   views: importRoutes('./views'),
   projects: importRoutes('./projects'),
+  project: importRoutes('./project'),
   pages: importRoutes('./pages')
 }
 
@@ -38,7 +39,8 @@ const routes = {
 exports = module.exports = function (app) {
 	// Views
   app.get('/', routes.views.index),
-  app.get('/projects/:slug', routes.projects.index),
+  app.get('/projects', routes.projects.index),
+  app.get('/projects/:slug', routes.project.index),
 	app.get('/:page', routes.pages.index)
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

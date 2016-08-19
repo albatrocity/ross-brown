@@ -1,19 +1,31 @@
 const keystone = require('keystone')
 const Project  = keystone.list('Project')
 const Role     = keystone.list('Role')
+const _        = require('lodash')
 
 exports = module.exports = function (req, res) {
   const view = new keystone.View(req, res)
   var locals = res.locals
 
   view.on('init', (next) => {
-    return Project.model.findOne({slug: req.params.slug}).then((project) => {
-      if (!project) { res.notfound() }
-      locals.project = project
-      locals.section = project.key
-      return project
-    }).then((project) => {
-      return Role.model.where('_id').in(project.roles).exec()
+    new Promise((resolve, reject) => {
+      return Project.paginate({
+        page: req.query.page || 1,
+        perPage: 10,
+        maxPages: 10
+      })
+      .populate('roles')
+      .exec((err, results) => {
+        if (err) { return reject(err) }
+        resolve(results)
+      })
+    }).then((paginated) => {
+      console.log(paginated)
+      locals.pagination = _.omit(paginated, 'results')
+      locals.projects = paginated.results
+      return paginated
+    }).then(() => {
+      return Role.model.find()
     }).then((roles) => {
       locals.roles = roles
       return next()
@@ -23,5 +35,5 @@ exports = module.exports = function (req, res) {
     })
   })
 
-  view.render('project')
+  view.render('projects')
 }
