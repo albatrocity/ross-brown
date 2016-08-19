@@ -1,0 +1,14 @@
+{% extends "default.html" %}
+
+{% block content %}
+	<div class="container">
+		<h1>{{ project.name }}</h1>
+
+    {% for role in roles %}
+      <div style="background: {{role.color}};">
+        <a href="/projects?role={{ role.slug }}">{{ role.name }}</a>
+      </div>
+    {% endfor %}
+
+	</div>
+{% endblock %}

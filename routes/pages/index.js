@@ -1,0 +1,19 @@
+const keystone = require('keystone')
+const Page = keystone.list('Page')
+
+exports = module.exports = function (req, res) {
+  const view = new keystone.View(req, res)
+  var locals = res.locals
+
+  view.on('init', (next) => {
+    return Page.model.findOne({slug: req.params.page}).then((page) => {
+      if (!page) { res.notfound() }
+      console.log(page)
+      locals.page = page
+      locals.section = page.key
+      next()
+    })
+  })
+
+  view.render('page')
+}

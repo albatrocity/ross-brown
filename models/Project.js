@@ -1,0 +1,20 @@
+const keystone = require('keystone')
+const Types = keystone.Field.Types
+
+const Project = new keystone.List('Project', {
+  autokey: { path: 'slug', from: 'name', unique: true },
+  defaultSort: '-createdAt'
+})
+
+Project.add({
+  name: { type: Types.Text, required: true, index: true },
+  description: { type: Types.Markdown, initial: true, required: true },
+  slug: { type: Types.Text, initial: true },
+  date: { type: Types.Date },
+  url: { type: Types.Url, initial: true },
+  roles: { type: Types.Relationship, ref: 'Role', many: true, initial: true },
+  images: { type: Types.CloudinaryImages, select: true, autoCleanup : true }
+})
+
+Project.defaultColumns = 'title, url, date, roles'
+Project.register()
