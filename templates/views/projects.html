@@ -3,7 +3,7 @@
 {% block content %}
 	<div class="container">
     {% for project in projects %}
-  		<h1>{{ project.name }}</h1>
+  		<h1><a href="/projects/{{ project.slug }}">{{ project.name }}</a></h1>
     {% endfor %}
 
 	</div>

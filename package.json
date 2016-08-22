@@ -13,15 +13,20 @@
     "nodemon": "^1.10.2",
     "nunjucks": "^1.0.5",
     "photoswipe": "^4.1.1",
-    "stylus": "^0.53.0"
+    "stylus": "^0.53.0",
+    "watchify": "^3.7.0"
   },
   "devDependencies": {
     "eslint": "^2.12.0",
-    "eslint-config-keystone": "^2.3.1",
-    "eslint-plugin-react": "^5.1.1"
+    "eslint-config-keystone": "^2.3.1"
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "nodemon keystone.js"
+    "start": "concurrently --kill-others 'npm run watch-dev' 'npm run watch-css' 'npm run watch-js'",
+    "watch-dev": "nodemon keystone.js",
+    "compile-css": "stylus public/styles -o public/compiled/styles",
+    "watch-css": "stylus public/styles -o public/compiled/styles -w",
+    "compile-js": "browserify public/js > public/compiled/js/bundle.js",
+    "watch-js": "watchify public/js/*.js -o public/compiled/js/bundle.js"
   }
 }
