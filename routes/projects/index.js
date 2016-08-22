@@ -6,21 +6,28 @@ const _        = require('lodash')
 exports = module.exports = function (req, res) {
   const view = new keystone.View(req, res)
   var locals = res.locals
+  const roleFilters = req.query.role.split(',')
 
   view.on('init', (next) => {
-    new Promise((resolve, reject) => {
-      return Project.paginate({
-        page: req.query.page || 1,
-        perPage: 10,
-        maxPages: 10
+    Role.model.where({slug: {$in: roleFilters}}).exec()
+    .then((roles) => {
+      return new Promise((resolve, reject) => {
+        const q = Project.paginate({
+          page: req.query.page || 1,
+          perPage: 10,
+          maxPages: 10
+        })
+        .populate('roles')
+        if (roleFilters) {
+          q.where({roles: {$all: roles.map(r => r._id) }})
+        }
+        q.exec((err, results) => {
+          if (err) { return reject(err) }
+          resolve(results)
+        })
       })
-      .populate('roles')
-      .exec((err, results) => {
-        if (err) { return reject(err) }
-        resolve(results)
-      })
-    }).then((paginated) => {
-      console.log(paginated)
+    })
+    .then((paginated) => {
       locals.pagination = _.omit(paginated, 'results')
       locals.projects = paginated.results
       return paginated

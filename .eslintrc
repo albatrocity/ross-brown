@@ -19,8 +19,6 @@
     "render": true
   },
   "rules": {
-    "react/jsx-uses-vars": 1,
-    "react/jsx-uses-react": 1,
     "babel/new-cap": 0,
     "indent": ["error", 2, {SwitchCase: 1}],
     "linebreak-style": ["error", "unix"],
