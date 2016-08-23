@@ -6,7 +6,7 @@
 			<i>Showing Projects where I was a {{ roleFilters | join(', ')}}</i>
 		{% endif %}
     {% for project in projects %}
-  		<h1><a href="/projects/{{ project.slug }}">{{ project.name }}</a></h1>
+  		{% include "_project_brief.html" %}
     {% endfor %}
 
 	</div>

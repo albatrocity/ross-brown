@@ -1,0 +1,15 @@
+{% extends "default.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col content s12 m8">
+        {{ content.html }}
+      </div>
+      <div class="col content s12 m4">
+				<h5>Latest Project</h5>
+        {% include "_project_brief.html" %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

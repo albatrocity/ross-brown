@@ -21,13 +21,12 @@ const Page = keystone.list('Page')
 */
 exports.initLocals = function (req, res, next) {
   Page.model.where({inMenu: true}).exec().then((results) => {
-    let pages = results.map( (r) => {
+    let menuPages = results.map( (r) => {
       return {label: r.name, key: r.slug, href: `/${r.slug}`}
     })
     res.locals.navLinks = [
-      { label: 'Home', key: 'home', href: '/' },
       { label: 'Projects', key: 'projects', href: '/projects' }
-    ].concat(pages)
+    ].concat(menuPages)
     res.locals.user = req.user
     next()
   })

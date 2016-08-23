@@ -30,23 +30,22 @@
 	<body>
 
 		{# HEADER #}
-		<div id="header" class="container">
-
-			{# Customise your site"s navigation by changing the navLinks Array in ./routes/middleware.js
-			   ... or completely change this header to suit your design. #}
-			<div role="navigation" class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<a class="navbar-brand" href="/">Ross Brown</a>
+		<div id="header">
+			<div class="container">
+				<div class="row">
+					<div class="col s4 m4">
+						<h4><a class="navbar-brand" href="/">Ross Brown</a></h4>
 					</div>
-					<div class="collapse navbar-collapse">
-						<ul class="nav navbar-nav navbar-left">
-							{% for link in navLinks %}
+					<div role="navigation" class="col s8 m8 navbar navbar-default">
+						<div class="collapse navbar-collapse">
+							<ul class="nav navbar-nav navbar-left">
+								{% for link in navLinks %}
 								<li class="{{ 'active' if link.key == section else '' }}">
 									<a href="{{ link.href }}">{{ link.label }}</a>
 								</li>
-							{% endfor %}
-						</ul>
+								{% endfor %}
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>

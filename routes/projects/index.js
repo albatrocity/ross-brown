@@ -8,7 +8,7 @@ exports = module.exports = function (req, res) {
   var locals = res.locals
   const roleFilters = req.query.role ? req.query.role.split(',') : []
   locals.roleFilters = roleFilters.map((r) => r.replace(/-/g, ' '))
-  locals.section = 'home'
+  locals.section = 'projects'
 
   view.on('init', (next) => {
     Role.model.where({slug: {$in: roleFilters}}).exec()

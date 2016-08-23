@@ -29,7 +29,7 @@ keystone.pre('render', middleware.flashMessages)
 
 // Import Route Controllers
 const routes = {
-  views: importRoutes('./views'),
+  home: importRoutes('./home'),
   projects: importRoutes('./projects'),
   project: importRoutes('./project'),
   pages: importRoutes('./pages')
@@ -38,7 +38,7 @@ const routes = {
 // Setup Route Bindings
 exports = module.exports = function (app) {
 	// Views
-  app.get('/', routes.views.index),
+  app.get('/', routes.home.index),
   app.get('/projects', routes.projects.index),
   app.get('/projects/:slug', routes.project.index),
 	app.get('/:page', routes.pages.index)
