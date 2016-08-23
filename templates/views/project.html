@@ -5,10 +5,17 @@
 		<h1><a href="/projects/{{ project.slug }}">{{ project.name }}</a></h1>
 
     {% for role in project.roles %}
-      <div style="background: {{role.color}};">
-        <a href="/projects?role={{ role.slug }}">{{ role.name }}</a>
-      </div>
+			{% include "_role.html" %}
     {% endfor %}
+
+		<div class='row'>
+			<div class='col s12 m6'>
+				{% include "_project_gallery.html" %}
+			</div>
+			<div class='col s12 m6'>
+				{{ project.description.html }}
+			</div>
+		</div>
 
 	</div>
 {% endblock %}

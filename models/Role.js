@@ -9,6 +9,7 @@ Role.add({
   name: { type: Types.Text, required: true, index: true },
   description: { type: Types.Markdown, initial: true, required: true },
   color: { type: Types.Color, initial: true, required: true },
+  textColor: { type: Types.Color, initial: true },
   slug: { type: Types.Text, initial: true }
 })
 

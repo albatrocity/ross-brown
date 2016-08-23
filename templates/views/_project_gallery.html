@@ -1,0 +1,11 @@
+<div class="project-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+  <div class="frame js_frame">
+    <ul class="slides js_slides">
+      {% for image in project.images %}
+        {% include "_gallery_image.html" %}
+      {% endfor %}
+    </ul>
+  </div>
+  <button class="js_prev">Prev</button>
+  <button class="js_next">Next</button>
+</div>

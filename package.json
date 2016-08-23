@@ -9,24 +9,25 @@
     "dotenv": "^2.0.0",
     "keystone": "^0.3.19",
     "lodash": "^4.13.1",
+    "lory.js": "^2.1.3",
     "mongoose": "^4.5.9",
     "nodemon": "^1.10.2",
     "nunjucks": "^1.0.5",
-    "photoswipe": "^4.1.1",
     "stylus": "^0.53.0",
     "watchify": "^3.7.0"
   },
   "devDependencies": {
+    "babelify": "^7.3.0",
     "eslint": "^2.12.0",
     "eslint-config-keystone": "^2.3.1"
   },
   "scripts": {
     "lint": "eslint .",
     "start": "concurrently --kill-others 'npm run watch-dev' 'npm run watch-css' 'npm run watch-js'",
-    "watch-dev": "nodemon keystone.js",
+    "watch-dev": "nodemon keystone.js --ignore /public/**/*.js",
     "compile-css": "stylus public/styles -o public/compiled/styles",
     "watch-css": "stylus public/styles -o public/compiled/styles -w",
-    "compile-js": "browserify public/js > public/compiled/js/bundle.js",
-    "watch-js": "watchify public/js/*.js -o public/compiled/js/bundle.js"
+    "compile-js": "browserify public/js/*/js > public/compiled/js/bundle.js -t [ babelify --presets [ es2015 react ] ]",
+    "watch-js": "watchify public/js/*.js -o public/compiled/js/bundle.js  -t [ babelify --presets [ es2015 react ] ]"
   }
 }
