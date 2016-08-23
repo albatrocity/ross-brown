@@ -5,6 +5,7 @@ const Role     = keystone.list('Role')
 exports = module.exports = function (req, res) {
   const view = new keystone.View(req, res)
   var locals = res.locals
+  locals.section = 'home'
 
   view.on('init', (next) => {
     return Project.model.findOne({slug: req.params.slug}).then((project) => {

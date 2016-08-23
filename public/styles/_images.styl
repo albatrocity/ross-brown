@@ -1,6 +1,6 @@
 
 .project-gallery {
-  
+
   .frame {
       /**
        * (optional) wrapper width, specifies width of the slider frame.
@@ -25,4 +25,67 @@
       }
   }
 
+}
+
+.project-gallery-nav {
+  width: 100%
+}
+
+.project-gallery-nav-item {
+  padding: 0.1em;
+  text-indent: -2em;
+  border-radius: 2em;
+  background: $color-ruby;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  overflow: hidden;
+  margin: .2em;
+  &.active {
+    background: $color-turquoise
+  }
+
+  img {
+    vertical-align: middle
+  }
+}
+
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.85);
+  transition: opacity 300ms;
+  -webkit-transition: opacity 300ms;
+  -moz-transition: opacity 300ms;
+  -ms-transition: opacity 300ms;
+  -o-transition: opacity 300ms;
+  z-index: 500;
+  opacity: 0;
+}
+
+.Overlay.show {
+  opacity: 1;
+}
+
+.zoom-image-clone {
+  position: fixed;
+  -moz-transition: -moz-transform 0.15s linear;
+  -ms-transition: -ms-transform 0.15s linear;
+  -webkit-transition: -webkit-transform 0.15s linear;
+  transition: transform 0.15s linear;
+  z-index: 500;
+  cursor: -webkit-zoom-out;
+  cursor: -moz-zoom-out;
+  cursor: -ms-zoom-out;
+  cursor: zoom-out;
+}
+
+.Overlay.image-zoom-overlay {
+  background-color: white;
+  background-color: rgba(255,255,255,0.97);
 }

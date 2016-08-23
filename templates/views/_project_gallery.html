@@ -8,4 +8,9 @@
   </div>
   <button class="js_prev">Prev</button>
   <button class="js_next">Next</button>
+  <div class='project-gallery-nav'>
+    {% for image in project.images %}
+      <a class="project-gallery-nav-item" href='#' data-loop-index="{{ loop.index - 1 }}">{{loop.index}}</a>
+    {% endfor %}
+  </div>
 </div>

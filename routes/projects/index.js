@@ -6,7 +6,9 @@ const _        = require('lodash')
 exports = module.exports = function (req, res) {
   const view = new keystone.View(req, res)
   var locals = res.locals
-  const roleFilters = req.query.role.split(',')
+  const roleFilters = req.query.role ? req.query.role.split(',') : []
+  locals.roleFilters = roleFilters.map((r) => r.replace(/-/g, ' '))
+  locals.section = 'home'
 
   view.on('init', (next) => {
     Role.model.where({slug: {$in: roleFilters}}).exec()
@@ -18,7 +20,7 @@ exports = module.exports = function (req, res) {
           maxPages: 10
         })
         .populate('roles')
-        if (roleFilters) {
+        if (roleFilters.length) {
           q.where({roles: {$all: roles.map(r => r._id) }})
         }
         q.exec((err, results) => {

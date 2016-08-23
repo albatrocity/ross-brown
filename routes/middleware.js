@@ -8,6 +8,8 @@
  * modules in your project's /lib directory.
  */
 const _ = require('lodash')
+const keystone = require('keystone')
+const Page = keystone.list('Page')
 
 
 /**
@@ -18,11 +20,17 @@ const _ = require('lodash')
   or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
-  res.locals.navLinks = [
-    { label: 'Home', key: 'home', href: '/' }
-  ]
-  res.locals.user = req.user
-  next()
+  Page.model.where({inMenu: true}).exec().then((results) => {
+    let pages = results.map( (r) => {
+      return {label: r.name, key: r.slug, href: `/${r.slug}`}
+    })
+    res.locals.navLinks = [
+      { label: 'Home', key: 'home', href: '/' },
+      { label: 'Projects', key: 'projects', href: '/projects' }
+    ].concat(pages)
+    res.locals.user = req.user
+    next()
+  })
 }
 
 exports.initErrorHandlers = function(req, res, next) {
