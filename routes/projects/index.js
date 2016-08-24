@@ -9,6 +9,7 @@ exports = module.exports = function (req, res) {
   const roleFilters = req.query.role ? req.query.role.split(',') : []
   locals.roleFilters = roleFilters.map((r) => r.replace(/-/g, ' '))
   locals.section = 'projects'
+  locals.title = 'Projects'
 
   view.on('init', (next) => {
     Role.model.where({slug: {$in: roleFilters}}).exec()
@@ -20,9 +21,11 @@ exports = module.exports = function (req, res) {
           maxPages: 10
         })
         .populate('roles')
+        .sort('-date')
         if (roleFilters.length) {
           q.where({roles: {$all: roles.map(r => r._id) }})
         }
+        locals.title = `${roles.map(r => r.name).join(',')} Projects`
         q.exec((err, results) => {
           if (err) { return reject(err) }
           resolve(results)

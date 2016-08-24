@@ -1,14 +1,24 @@
 {% extends "default.html" %}
 
 {% block content %}
-	<div class="container">
-		<h1>Projects</h1>
-		{% if roleFilters.length %}
-			<i>Showing Projects where I was a {{ roleFilters | join(', ')}}</i>
-		{% endif %}
-    {% for project in projects %}
-  		{% include "_project_brief.html" %}
-    {% endfor %}
-
-	</div>
+  <div class="container">
+    <h1>Projects</h1>
+    {% if roleFilters.length %}
+      <i>Showing Projects where I was a {{ roleFilters | join(', ')}}. </i>
+			<a href="/projects">Show all</a>
+    {% endif %}
+    <div class='row'>
+      <div class='col sm12 m8'>
+        {% for project in projects %}
+          {% include "_project_brief.html" %}
+        {% endfor %}
+      </div>
+      <div class='col sm12 m4'>
+				<h5>Filter by Role</h5>
+        {% for role in roles %}
+          {% include "_role.html" %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -7,10 +7,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>{{ title|default("Ross Brown") }}</title>
+		<title>Ross Brown{%if title %} | {{ title }}{% endif %}</title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="https://fonts.googleapis.com/css?family=Asap|Lilita+One|Material+Icons" rel="stylesheet">
-		<!--  ASAP, Archivo+Narrow-->
 
 		<link href="/compiled/styles/site.css" rel="stylesheet">
 

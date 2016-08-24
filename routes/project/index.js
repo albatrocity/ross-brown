@@ -11,7 +11,8 @@ exports = module.exports = function (req, res) {
     return Project.model.findOne({slug: req.params.slug}).then((project) => {
       if (!project) { res.notfound() }
       locals.project = project
-      locals.section = project.key
+      locals.title = project.name
+      locals.section = 'projects'
       return project
     }).then((project) => {
       return Role.model.where('_id').in(project.roles).exec()

@@ -10,7 +10,8 @@ exports = module.exports = function (req, res) {
     return Page.model.findOne({slug: req.params.page}).then((page) => {
       if (!page) { res.notfound() }
       locals.page = page
-      locals.section = page.key
+      locals.title = page.name
+      locals.section = page.slug
       next()
     })
   })

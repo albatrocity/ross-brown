@@ -1,1 +1,6 @@
-<h4><a href="/projects/{{ project.slug }}">{{ project.name }}</a></h4>
+<h4>
+  <a href="/projects/{{ project.slug }}">{{ project.name }}</a>
+  {% for role in project.roles %}
+    {% include '_mini_role.html' %}
+  {% endfor %}
+</h4>
