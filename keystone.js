@@ -32,7 +32,8 @@ keystone.init({
   'auto update': true,
   'session': true,
   'auth': true,
-  'user model': 'User'
+  'user model': 'User',
+  'mongo': process.env.MONGO_URI || 'mongodb://localhost/ross-brown'
 })
 
 keystone.set('s3 config', {
