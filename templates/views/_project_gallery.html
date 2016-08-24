@@ -6,11 +6,17 @@
       {% endfor %}
     </ul>
   </div>
-  <button class="js_prev">Prev</button>
-  <button class="js_next">Next</button>
-  <div class='project-gallery-nav'>
-    {% for image in project.images %}
-      <a class="project-gallery-nav-item" href='#' data-loop-index="{{ loop.index - 1 }}">{{loop.index}}</a>
-    {% endfor %}
+  <div class="project-gallery-nav-meta">
+    <div class="row">
+      <div class="col s3">
+        <i class="material-icons js_prev">arrow_back</i>
+        <i class="material-icons js_next">arrow_forward</i>
+      </div>
+      <div class='project-gallery-nav col s9'>
+        {% for image in project.images %}
+        <a class="project-gallery-nav-item" href='#' data-loop-index="{{ loop.index - 1 }}">{{loop.index}}</a>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>

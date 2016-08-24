@@ -4,6 +4,7 @@ require('image-zoom')
 
 document.addEventListener('DOMContentLoaded', () => {
   const slider = document.querySelector('.project-gallery')
+  if (!slider) { return }
   const navItems = document.querySelectorAll('.project-gallery-nav-item')
   const setSlideClasses = (currentSlide) => {
     Array.prototype.slice.call(navItems).forEach((el) => {

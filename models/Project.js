@@ -9,6 +9,7 @@ const Project = new keystone.List('Project', {
 Project.add({
   name: { type: Types.Text, required: true, index: true },
   description: { type: Types.Markdown, initial: true, required: true },
+  meta: { type: Types.Markdown, initial: true },
   slug: { type: Types.Text, initial: true },
   date: { type: Types.Date },
   url: { type: Types.Url, initial: true },

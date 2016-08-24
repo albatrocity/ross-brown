@@ -1,23 +1,37 @@
 {% extends "default.html" %}
 
 {% block content %}
-	<div class="container">
-		<h1><a href="/projects/{{ project.slug }}">{{ project.name }}</a></h1>
+  <div class="container">
+    <nav>
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="/projects" class="breadcrumb">Projects</a>
+          {% if roleFilters.length %}
+            <a href="/projects?role=" class="breadcrumb">{{ project.name }}</a>
+          {% endif %}
+          <a href="/projects/{{ project.slug }}" class="breadcrumb">{{ project.name }}</a>
+        </div>
+      </div>
+    </nav>
+    <h1><a href="/projects/{{ project.slug }}">{{ project.name }}</a></h1>
 
     {% for role in project.roles %}
-			{% include "_role.html" %}
+      {% include "_role.html" %}
     {% endfor %}
 
-		<div class='row'>
-			{% if project.images.length %}
-				<div class='col s12 m6'>
-					{% include "_project_gallery.html" %}
-				</div>
-			{% endif %}
-			<div class='col s12 {% if project.images.length %}m6{%else%}m12{%endif%}'>
-				{{ project.description.html }}
-			</div>
-		</div>
+    <div class='row'>
+      {% if project.images.length or project.meta %}
+        <div class='col s12 m6'>
+					{% if project.images.length %}
+            {% include "_project_gallery.html" %}
+					{% endif %}
+					<div class="project-meta">{{ project.meta.html }}</div>
+        </div>
+      {% endif %}
+      <div class='col s12 {% if project.images.length or project.meta %}m6{%else%}m12{%endif%}'>
+        {{ project.description.html }}
+      </div>
+    </div>
 
-	</div>
+  </div>
 {% endblock %}
