@@ -8,7 +8,9 @@ exports = module.exports = function (req, res) {
   locals.section = 'projects'
 
   view.on('init', (next) => {
-    return Project.model.findOne({slug: req.params.slug}).then((project) => {
+    return Project.model.findOne({
+      slug: req.params.slug, published: true
+    }).then((project) => {
       if (!project) { res.notfound() }
       locals.project = project
       locals.title = project.name

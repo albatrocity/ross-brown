@@ -18,7 +18,7 @@ exports = module.exports = function (req, res) {
       locals.section = 'home'
       return locals
     }).then(() => {
-      return Project.model.find().sort('-date').limit(1).exec()
+      return Project.model.find({published: true}).sort('-date').limit(1).exec()
     }).then((project) => {
       locals.project = project[0]
       next()

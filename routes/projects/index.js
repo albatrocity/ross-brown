@@ -20,6 +20,7 @@ exports = module.exports = function (req, res) {
           perPage: 10,
           maxPages: 10
         })
+        .where({published: true})
         .populate('roles')
         .sort('-date')
         if (roleFilters.length) {

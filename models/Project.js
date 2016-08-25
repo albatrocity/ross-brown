@@ -13,7 +13,8 @@ Project.add({
   slug: { type: Types.Text, initial: true },
   date: { type: Types.Date },
   roles: { type: Types.Relationship, ref: 'Role', many: true, initial: true },
-  images: { type: Types.CloudinaryImages, select: true, autoCleanup : true }
+  images: { type: Types.CloudinaryImages, select: true, autoCleanup : true },
+  published: { type: Types.Boolean, default: true, initial: true }
 })
 
 Project.defaultColumns = 'title, url, date, roles'
