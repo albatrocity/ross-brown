@@ -12,7 +12,6 @@ Project.add({
   meta: { type: Types.Markdown, initial: true },
   slug: { type: Types.Text, initial: true },
   date: { type: Types.Date },
-  url: { type: Types.Url, initial: true },
   roles: { type: Types.Relationship, ref: 'Role', many: true, initial: true },
   images: { type: Types.CloudinaryImages, select: true, autoCleanup : true }
 })
