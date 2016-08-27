@@ -15,9 +15,11 @@
     </nav>
     <h1><a href="/projects/{{ project.slug }}">{{ project.name }}</a></h1>
 
-    {% for role in project.roles %}
-      {% include "_role.html" %}
-    {% endfor %}
+    <div class='project-roles'>
+      {% for role in project.roles %}
+        {% include "_role.html" %}
+      {% endfor %}
+    </div>
 
     <div class='row'>
       {% if project.images.length or project.meta %}
