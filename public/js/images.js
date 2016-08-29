@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.sliderr = lorySlider
   slider.addEventListener('click', (e) => {
     if ( e.srcElement.classList.contains('project-gallery-nav-item') ) {
+      e.preventDefault()
       lorySlider.slideTo(parseInt(e.srcElement.getAttribute('data-loop-index')))
       e.stopPropagation()
     }
