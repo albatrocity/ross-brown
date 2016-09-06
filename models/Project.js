@@ -17,5 +17,5 @@ Project.add({
   published: { type: Types.Boolean, default: true, initial: true }
 })
 
-Project.defaultColumns = 'title, url, date, published'
+Project.defaultColumns = 'name, url, date, published'
 Project.register()
