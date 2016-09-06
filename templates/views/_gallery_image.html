@@ -1,3 +1,1 @@
-<li itemprop="associatedMedia" class='gallery-image' itemscope itemtype="http://schema.org/ImageObject">
-  <img src="{{ image.limit(800, 600) }}" data-zoom-padding='20' data-zoom-url='{{ image.url }}' data-zoom-overlay='true' class='gallery-image-thumbnail' itemprop="thumbnail" alt="Image description" />
-</li>
+<img src="{{ image.limit(800, 600) }}" data-index="{{ loop.index }}" data-zoom-padding='20' data-zoom-url='{{ image.url }}' data-zoom-overlay='true' class='gallery-image-thumbnail' itemprop="thumbnail" alt="Image description" />
