@@ -5,12 +5,14 @@
       {% endfor %}
   </div>
   <div class="project-gallery-nav-meta">
-    <div class="row">
-      <div class='project-gallery-nav col s12'>
-        {% for image in project.images %}
-        <a class="project-gallery-nav-item" href='#' data-loop-index="{{ loop.index }}">{{loop.index}}</a>
-        {% endfor %}
+    {% if project.images.length > 1 %}
+      <div class="row">
+        <div class='project-gallery-nav col s12'>
+          {% for image in project.images %}
+          <a class="project-gallery-nav-item" href='#' data-loop-index="{{ loop.index }}">{{loop.index}}</a>
+          {% endfor %}
+        </div>
       </div>
-    </div>
+    {% endif %}
   </div>
 </div>
