@@ -24,12 +24,14 @@ const setSlideClasses = (currentSlide) => {
   })
 }
 
-$nav.addEventListener('click', (e) => {
-  if ( e.srcElement.classList.contains('project-gallery-nav-item') ) {
-    e.preventDefault()
-    slider.gotoSlide(parseInt(e.srcElement.getAttribute('data-loop-index')))
-    e.stopPropagation()
-  }
-})
-setSlideClasses(1)
+if ($nav) {
+  $nav.addEventListener('click', (e) => {
+    if ( e.srcElement.classList.contains('project-gallery-nav-item') ) {
+      e.preventDefault()
+      slider.gotoSlide(parseInt(e.srcElement.getAttribute('data-loop-index')))
+      e.stopPropagation()
+    }
+  })
+  setSlideClasses(1)
+}
 slider.start()
